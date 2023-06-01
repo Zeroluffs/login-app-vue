@@ -1,12 +1,3 @@
-<script setup>
-import { ref } from "vue";
-
-defineProps({
-  msg: String,
-});
-
-</script>
-
 <template>
   <div class="flex justify-center items-center h-screen">
     <div class="bg-white p-8 rounded-2xl shadow-md w-[400px]">
