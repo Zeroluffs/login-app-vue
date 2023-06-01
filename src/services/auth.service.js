@@ -4,11 +4,11 @@ const API_URL =
   "https://node-login-backend-production.up.railway.app/api/users/";
 
 class AuthService {
-  login(username, password) {
+  login(user) {
     return axios
       .post(API_URL + "login", {
-        username,
-        password,
+        email: user.username,
+        password: user.password,
       })
       .then((response) => {
         if (response.data.accessToken) {
@@ -21,14 +21,13 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(username, email, password) {
+  register(user) {
     return axios.post(API_URL, {
-      username,
-      email,
-      password,
+      username: user.username,
+      email: user.email,
+      password: user.password,
     });
   }
 }
-
 
 export default new AuthService();
