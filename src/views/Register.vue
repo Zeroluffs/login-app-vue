@@ -115,7 +115,7 @@ export default {
           this.loading = false;
           setTimeout(() => {
             this.$router.push("/login");
-          }, 2000);
+          }, 1000);
         },
         (error) => {
           console.log("error", error);
