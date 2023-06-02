@@ -120,8 +120,7 @@ export default {
           }, 1000);
         },
         (error) => {
-          console.log("error", error);
-          this.message = error.response.data;
+          this.message = "There was an error. User already exists!";
           this.successful = false;
           this.loading = false;
         }
