@@ -4,14 +4,14 @@
       <h2 class="text-2xl font-bold mb-4">Login</h2>
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="mb-4">
-          <label for="username" class="block mb-2">Username:</label>
+          <label for="email" class="block mb-2">Email:</label>
           <Field
-            name="username"
+            name="email"
             type="text"
-            id="username"
+            id="email"
             class="w-full p-2 border border-gray-300 rounded"
           />
-          <ErrorMessage name="username" class="text-red-500" />
+          <ErrorMessage name="email" class="text-red-500" />
         </div>
         <div class="mb-4">
           <label for="password" class="block mb-2">Password:</label>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      username: yup.string().required("Username is required!"),
+      email: yup.string().required("Email is required!"),
       password: yup.string().required("Password is required!"),
     });
 
