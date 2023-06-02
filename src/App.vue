@@ -1,11 +1,50 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld/>
+  <div id="app">
+    <nav
+      class="flex flex-row justify-between mt-16  max-w-7xl text-neutral-800 text-3xl font-semibold w-[1280px] mx-auto"
+    >
+      <div class="flex flex-row gap-9 ">
+        <router-link to="/">Home</router-link> 
+        <router-link to="/about">About</router-link> 
+        <router-link to="/profile">Profile</router-link>
+      </div>
+      <div>
+        <div class="flex flex-row gap-9" v-if="!currentUser">
+          <router-link to="/login">Login</router-link> 
+          <router-link to="/register">Register</router-link>
+        </div>
+        <div v-if="currentUser">
+          <span class="text-neutral-800 font-semibold">{{
+            currentUser.username
+          }}</span>
+          <button
+            @click="logout"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-
-</style>
+<script>
+export default {
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/login");
+    },
+  },
+};
+</script>
+<style scoped></style>
