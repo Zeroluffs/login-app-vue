@@ -2,48 +2,60 @@
   <div class="flex justify-center items-center h-screen">
     <div class="bg-white p-8 rounded-2xl shadow-md w-[400px]">
       <h2 class="text-2xl font-bold mb-4">Login</h2>
-      <form @submit.prevent="login">
+      <Form @submit="handleLogin" :validation-schema="schema">
         <div class="mb-4">
-          <label for="email" class="block mb-2">Username:</label>
-          <input
-            type="string"
+          <label for="username" class="block mb-2">Username:</label>
+          <Field
+            name="username"
+            type="text"
             id="username"
-            v-model="username"
-            required
             class="w-full p-2 border border-gray-300 rounded"
           />
+          <ErrorMessage name="username" />
         </div>
         <div class="mb-4">
           <label for="password" class="block mb-2">Password:</label>
-          <input
+          <Field
+            name="password"
             type="password"
             id="password"
-            v-model="password"
-            required
             class="w-full p-2 border border-gray-300 rounded"
           />
         </div>
         <div>
           <button
-            type="submit"
+            :disabled="loading"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Login
           </button>
         </div>
-      </form>
+      </Form>
     </div>
   </div>
 </template>
 
 <script>
 import User from "../models/User";
-
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
   name: "Login",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
   data() {
+    const schema = yup.object().shape({
+      username: yup.string().required("Username is required!"),
+      password: yup.string().required("Password is required!"),
+    });
+
     return {
-      user: new User("", ""),
+      loading: false,
+      message: "",
+      schema,
     };
   },
   computed: {
@@ -53,16 +65,26 @@ export default {
   },
   created() {
     if (this.loggedIn) {
+      console.log("Already logged in!");
       this.$router.push("/profile");
     }
   },
   methods: {
-    handleLogin() {
-      if (this.user.username && this.user.password) {
-        this.$store.dispatch("auth/login", this.user).then(() => {
+    handleLogin(user) {
+      this.$store.dispatch("auth/login", user).then(
+        () => {
           this.$router.push("/profile");
-        });
-      }
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
     },
   },
 };
