@@ -36,7 +36,6 @@
         </div>
         <div>
           <button
-            type="submit"
             class="bg-blue-500 hover:bg-blue-700 w-[100%] text-white font-bold py-2 px-4 rounded"
             :disabled="loading"
           >
@@ -44,6 +43,13 @@
           </button>
         </div>
       </Form>
+      <div
+        class="text-center mt-8 text-xl"
+        v-if="message"
+        :class="successful ? `text-green-500` : 'text-red-500'"
+      >
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +92,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      console.log("computed logged",this.$store.state.auth.status.loggedIn);
+      console.log("computed logged", this.$store.state.auth.status.loggedIn);
       return this.$store.state.auth.status.loggedIn;
     },
   },
@@ -103,17 +109,17 @@ export default {
 
       this.$store.dispatch("auth/register", user).then(
         (data) => {
-          this.message = data.message;
+            console.log("data", data)
+          this.message = "Successful registration!";
           this.successful = true;
           this.loading = false;
+          setTimeout(() => {
+            this.$router.push("/login");
+          }, 2000);
         },
         (error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+            console.log("error",error)
+          this.message = error.response.data;
           this.successful = false;
           this.loading = false;
         }
