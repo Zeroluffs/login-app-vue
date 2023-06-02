@@ -1,28 +1,27 @@
 import axios from "axios";
+import { decodeToken } from "../utils/decode";
 
 const API_URL =
   "https://node-login-backend-production.up.railway.app/api/users/";
 
 class AuthService {
-  login(user) {
-    return axios
-      .post(API_URL + "login", {
-        username: user.username,
-        password: user.password,
-      })
-      .then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-        return response.data;
-      });
+  async login(user) {
+    const response = await axios.post(API_URL + "login", {
+      username: user.username,
+      password: user.password,
+    });
+    let newUser;
+    if (response.data.token) {
+      newUser = decodeToken(response.data.token);
+      localStorage.setItem("user", JSON.stringify(newUser));
+    }
+    return newUser;
   }
   logout() {
     localStorage.removeItem("user");
   }
 
   register(user) {
-    console.log("registering")
     return axios.post(API_URL, {
       username: user.username,
       email: user.email,
