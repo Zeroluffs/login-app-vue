@@ -11,7 +11,7 @@
             id="username"
             class="w-full p-2 border border-gray-300 rounded"
           />
-          <ErrorMessage name="username" />
+          <ErrorMessage name="username" class="text-red-500" />
         </div>
         <div class="mb-4">
           <label for="password" class="block mb-2">Password:</label>
@@ -21,6 +21,7 @@
             id="password"
             class="w-full p-2 border border-gray-300 rounded"
           />
+          <ErrorMessage class="text-red-500" name="password" />
         </div>
         <div>
           <button
@@ -31,6 +32,9 @@
           </button>
         </div>
       </Form>
+      <div class="text-center mt-8 text-xl text-red-500">
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
@@ -65,7 +69,6 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      console.log("Already logged in!");
       this.$router.push("/profile");
     }
   },
@@ -77,12 +80,8 @@ export default {
         },
         (error) => {
           this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          console.log(error.response.data.error, "error");
+          this.message = error.response.data.error;
         }
       );
     },
