@@ -4,15 +4,21 @@
       class="flex xl:flex-row flex-col xl:px-24 justify-center items-center xl:justify-between mt-16 max-w-7xl text-neutral-800 text-4xl font-semibold mx-auto"
     >
       <div class="flex flex-row gap-9 mb-4 xl:mb-0">
-        <router-link to="/profile">Profile</router-link>
+        <router-link active-class="text-blue-500" to="/profile"
+          >Profile</router-link
+        >
       </div>
       <div>
         <div
           class="flex items-center xl:items-start gap-4 flex-col xl:flex-row xl:gap-9"
           v-if="!currentUser"
         >
-          <router-link to="/login">Login</router-link>
-          <router-link to="/register">Register</router-link>
+          <router-link active-class="text-blue-500" to="/login"
+            >Login</router-link
+          >
+          <router-link active-class="text-blue-500" to="/register"
+            >Register</router-link
+          >
         </div>
         <div v-if="currentUser">
           <!-- <span class="text-neutral-800 font-semibold">{{
