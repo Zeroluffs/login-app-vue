@@ -3,24 +3,24 @@
     <nav
       class="flex xl:flex-row flex-col xl:px-24 justify-center items-center xl:justify-between mt-16 max-w-7xl text-neutral-800 text-3xl font-semibold mx-auto"
     >
-      <div class="flex flex-row gap-9">
+      <div class="flex flex-row gap-9 mb-4 xl:mb-0">
         <router-link to="/profile">Profile</router-link>
       </div>
       <div>
         <div
-          class="flex items-center xl:items-start flex-col xl:flex-row xl:gap-9"
+          class="flex items-center xl:items-start gap-4 flex-col xl:flex-row xl:gap-9"
           v-if="!currentUser"
         >
           <router-link to="/login">Login</router-link>
           <router-link to="/register">Register</router-link>
         </div>
         <div v-if="currentUser">
-          <span class="text-neutral-800 font-semibold">{{
+          <!-- <span class="text-neutral-800 font-semibold">{{
             currentUser.username
-          }}</span>
+          }}</span> -->
           <button
             @click="logout"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Logout
           </button>
