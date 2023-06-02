@@ -99,6 +99,8 @@ export default {
   mounted() {
     if (this.loggedIn) {
       this.$router.push("/");
+    } else {
+      this.$router.push("/register");
     }
   },
   methods: {
