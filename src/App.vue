@@ -3,7 +3,8 @@
     <nav
       class="flex xl:flex-row flex-col xl:px-24 justify-center items-center xl:justify-between mt-16 max-w-7xl text-neutral-800 text-4xl font-semibold mx-auto"
     >
-      <div class="flex flex-row gap-9 mb-4 xl:mb-0">
+      <div class="flex flex-col xl:flex-row gap-4 mb-4 xl:mb-0">
+        <router-link active-class="text-blue-500" to="/">Home</router-link>
         <router-link active-class="text-blue-500" to="/profile"
           >Profile</router-link
         >
