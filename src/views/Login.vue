@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen">
-    <div class="bg-white p-8 rounded-2xl shadow-md w-[400px]">
+    <div class="bg-white p-8 text-neutral-800 rounded-2xl shadow-md w-[400px]">
       <h2 class="text-2xl font-bold mb-4">Login</h2>
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="mb-4">
@@ -25,7 +25,7 @@
         <div>
           <button
             :disabled="loading"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            class="bg-blue-500 w-[100%] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Login
           </button>

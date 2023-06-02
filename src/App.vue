@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav
-      class="flex flex-row px-24 justify-between mt-16  max-w-7xl text-neutral-800 text-3xl font-semibold w-[1280px] mx-auto"
+      class="flex flex-row px-24 justify-between mt-16  max-w-7xl text-neutral-800 text-3xl font-semibold  mx-auto"
     >
       <div class="flex flex-row gap-9 ">
         <router-link to="/profile">Profile</router-link>
