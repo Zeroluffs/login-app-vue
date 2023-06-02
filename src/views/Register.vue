@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div class="flex justify-center items-center mt-32 xl:mt-0 xl:h-screen">
     <div class="bg-white p-8 rounded-2xl shadow-md w-[400px]">
       <h2 class="text-2xl font-bold mb-4">Register</h2>
       <Form @submit="handleRegister" :validation-schema="schema">
@@ -109,7 +109,7 @@ export default {
 
       this.$store.dispatch("auth/register", user).then(
         (data) => {
-            console.log("data", data)
+          console.log("data", data);
           this.message = "Successful registration!";
           this.successful = true;
           this.loading = false;
@@ -118,7 +118,7 @@ export default {
           }, 2000);
         },
         (error) => {
-            console.log("error",error)
+          console.log("error", error);
           this.message = error.response.data;
           this.successful = false;
           this.loading = false;
