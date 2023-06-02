@@ -10,10 +10,11 @@ class AuthService {
       username: user.username,
       password: user.password,
     });
-    if (response.data.accessToken) {
-      localStorage.setItem("user", JSON.stringify(response.data.token));
+    let newUser;
+    if (response.data.token) {
+      newUser = decodeToken(response.data.token);
+      localStorage.setItem("user", JSON.stringify(newUser));
     }
-    const newUser = decodeToken(response.data.token);
     return newUser;
   }
   logout() {
