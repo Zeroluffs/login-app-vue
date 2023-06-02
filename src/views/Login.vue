@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import User from "../models/User";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 export default {
