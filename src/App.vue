@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <nav
-      class="flex flex-row px-24 justify-between mt-16  max-w-7xl text-neutral-800 text-3xl font-semibold  mx-auto"
+      class="flex xl:flex-row flex-col xl:px-24 justify-center items-center xl:justify-between mt-16 max-w-7xl text-neutral-800 text-3xl font-semibold mx-auto"
     >
-      <div class="flex flex-row gap-9 ">
+      <div class="flex flex-row gap-9">
         <router-link to="/profile">Profile</router-link>
       </div>
       <div>
-        <div class="flex flex-row gap-9" v-if="!currentUser">
-          <router-link to="/login">Login</router-link> 
+        <div
+          class="flex items-center xl:items-start flex-col xl:flex-row xl:gap-9"
+          v-if="!currentUser"
+        >
+          <router-link to="/login">Login</router-link>
           <router-link to="/register">Register</router-link>
         </div>
         <div v-if="currentUser">

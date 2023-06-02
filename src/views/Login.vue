@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div class="flex justify-center items-center mt-32 xl:mt-0 xl:h-screen">
     <div class="bg-white p-8 text-neutral-800 rounded-2xl shadow-md w-[400px]">
       <h2 class="text-2xl font-bold mb-4">Login</h2>
       <Form @submit="handleLogin" :validation-schema="schema">
