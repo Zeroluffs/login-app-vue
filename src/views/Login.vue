@@ -67,6 +67,14 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     },
   },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push("/login");
+    }
+    {
+      this.$router.push("/profile");
+    }
+  },
   created() {
     if (this.loggedIn) {
       this.$router.push("/profile");

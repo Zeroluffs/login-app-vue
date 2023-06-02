@@ -29,6 +29,8 @@ export default {
   mounted() {
     if (!this.currentUser) {
       this.$router.push("/login");
+    } else {
+      this.$router.push("/profile");
     }
   },
 };
